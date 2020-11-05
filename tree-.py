@@ -51,6 +51,24 @@ def diameter(root):
     return max(lheight+rheight+1, max(ldiameter,rdiameter))
 
 
+# BFS Search - Level Order Traversal 
+
+def LevelOrder(root):
+    if root is None: 
+        return 0
+    
+    queue = []
+    queue.append(root)
+
+    while(len(queue)>0):
+        print(queue[0].val)
+        root = queue.pop(0)
+
+        if root.left is not None: 
+            queue.append(root.left)
+
+        if root.right is not None: 
+            queue.append(root.right) 
 
 
 
@@ -62,7 +80,8 @@ root.left.right= Node(5)
 root.right.left = Node(6)
 root.right.right = Node(7)
 
-print(height(root))
+#print(height(root))
+print(LevelOrder(root))
 # Given Tree: 
 """ 
          1

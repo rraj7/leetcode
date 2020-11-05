@@ -279,3 +279,18 @@ def BubbleSort(array):
 
 answer = BubbleSort(array1)
 print(answer)
+
+
+
+
+array1 = [2,2,4,4,6,1]
+
+def Unique(nums):
+    for i in range(len(nums)):
+        for j in range(i+1,len(nums)):
+            if nums[i] == nums[j]:
+                return nums[i]
+
+
+answer = Unique(array1)
+print(answer)
