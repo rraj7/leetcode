@@ -77,19 +77,12 @@ def MergeSort(array):
     return array
 
         
-
-
-
-            
-
-
-
-
+#HEAP SORT
 
 
 
 arrayay1 = [-1,-3,-2,3,9,5,-5]
 arrayay2 = [9,8,7,6,5,4,3,2,1]
 
-ans = MergeSort(arrayay2)
+ans = MergeSort(arrayay)
 print(ans)

@@ -294,3 +294,6 @@ def Unique(nums):
 
 answer = Unique(array1)
 print(answer)
+
+graphlist = [1,3,4]
+print(graphlist*2)
