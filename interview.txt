@@ -1,0 +1,20 @@
+1. OTP generator function without using rand method 
+	i. UTC timings
+	ii. GUID 
+	iii. Object Mapper
+	iv. Array Splicing
+2. ATC tower algo
+	i. Heap Sort 
+	ii. Parity Generator - Queue
+	iii. FIFO
+
+3. Elevator efficenty algo 
+	i. Sorting
+
+
+4. When would you've muliple DBs in a company 
+5. Queue and Cache managment in a Server
+6. How would you handle multiple front-ends (services) from one server
+7. Can you create a client-server model without a DB, explain yes/no.
+8. Serverless computing vs Microservices vs Stateless servers. 
+9. What is stackoverflow.
