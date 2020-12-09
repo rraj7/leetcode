@@ -41,7 +41,7 @@ n = len(arr)
 
 
 
-#Linear Search
+#Linear Search O(N) S.C = O(1)
 
 def LinearSearch(array, x): 
     for i in range(1,len(array)):
@@ -50,3 +50,19 @@ def LinearSearch(array, x):
 
 
 print(LinearSearch(arr,56))
+
+
+#Interpolation Search T.C = O(N)
+def InterpolationSearch(array, l, h, x):
+    if (l<=h and x>=array[0] and x <=array[h] ):
+        pos = lo + ((hi - lo) // (arr[hi] - arr[lo]) * (x - arr[lo]))
+
+        if array[pos] ==x: 
+            return pos
+        elif array[pos]> x:
+            return InterpolationSearch(array,pos+1,hi,x)
+        else: 
+            return InterpolationSearch(array,l, pos-1,x)
+    return -1
+
+

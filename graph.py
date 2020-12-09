@@ -59,7 +59,7 @@ if __name__ == "__main__":
 """
 
 #SECOND Method:: USing dict 
-
+"""
 class Graph: 
     graph_dict = {}
 
@@ -75,5 +75,45 @@ class Graph:
             for neighbour in self.graph_dict[node]:
                 print("(",node")
 
+"""
 
 
+
+# Create a graph 
+# now create a dict with graph elements: 
+graph_element = {"a":["b","c"],"b":["a","d"],"c" : ["a", "d"],"d" : ["e"], "e" : ["d"]}
+
+
+#Dispaly 
+
+class graph():
+    def __init__(self, gdict):
+        if gdict is None: 
+            gdict = []
+        self.gdict = gdict
+
+    def getvertices(self):
+        return list(self.gdict.keys())
+
+    def getedges(self):
+        edgename = []
+        for v in self.gdict:
+            for nv in self.gdict[v]:
+                if {nv,v} not in edgename:
+                    edgename.append({v,nv})
+        return edgename
+    
+    def addEdge(self, edge):
+        edge = set(edge)
+        v1,v2 = tuple(edge)
+        if v1 in self.gdict:
+            self.gdict[v1].append(v2)
+        else: 
+            self.gdict[v1] = [v2]
+
+
+g = graph(graph_element)
+g.addEdge({"a","c"})
+g.addEdge({"a","e"})
+
+print(g.getedges())

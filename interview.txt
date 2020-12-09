@@ -18,3 +18,9 @@
 7. Can you create a client-server model without a DB, explain yes/no.
 8. Serverless computing vs Microservices vs Stateless servers. 
 9. What is stackoverflow.
+10. design traffic monitering system -- 
+
+
+**Design a monitoring website for brands latest releases and apply for
+checkout once the price point is reached/product is available
+ex. Bot for stockX, 
