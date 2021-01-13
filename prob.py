@@ -18,6 +18,7 @@ def Result(score):
     ans = {"Poor":0,"Fair":0,"Good":0,"Excellent":0,"Elite":0}
     for i in range(len(score)-1): 
 
+    
         if (score[i]>= 400 and score[i]<500) :
             count+=1
             ans["Poor"] = count
