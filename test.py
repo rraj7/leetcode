@@ -1,4 +1,4 @@
-def create_unique(array1,array2):
+""" def create_unique(array1,array2):
     set1 = set(array1)
     set2 = set(array2)
 
@@ -26,3 +26,23 @@ for key, val in sorted(d_input.items()):
 
 
 print(str(dict(res)))
+
+i/p = ["test","test1","test2","test2","test1","tset"]
+o/p = ["test", "test1","test2"]
+
+
+def uniqueString(array):
+    hash = {}
+    for i in range len(array1):
+
+ """
+
+
+def result(array):
+    if (array ==1):
+        return 2;
+    else :
+        return 2* result(array-1)
+    
+
+print(result(4))
