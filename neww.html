@@ -1,0 +1,294 @@
+<div class="candidate-rich-text"><div id="7nng1et3jpi-instruction"><p>Using Wise, customers can have a multi currency account which can be used to deposit and withdraw money in many different currencies. These multi-currency accounts allow our customers to easily convert between currencies.&nbsp; We also offer a spending card that customers can use when abroad to spent the money in their account.</p>
+
+    <p>&nbsp;</p>
+    
+    <p>Withdrawal from such multi-currency accounts using the card follows a special algorithm.</p>
+    
+    <p style="margin-left:40px;">&nbsp;</p>
+    
+    <p style="margin-left:40px;">1. If the customer has sufficient balance in the currency they are spending, then the money is debited from that wallet.&nbsp; For example, if they have 100 EUR in their account, and they spend 20 EUR, we debit 20 EUR from their EUR wallet, and they have 80 EUR left.</p>
+    
+    <p style="margin-left:40px;">&nbsp;</p>
+    
+    <p style="margin-left:40px;">2. If the customer does not have sufficient&nbsp;balance in the currency they are spending, then we convert the amount from one of the other wallets they do have a balance in, based on following currency order.&nbsp;</p>
+    
+    <ol>
+        <li style="margin-left:40px;"><strong>USD</strong></li>
+        <li style="margin-left:40px;"><strong>EUR</strong></li>
+        <li style="margin-left:40px;"><strong>GBP&nbsp; </strong></li>
+    </ol>
+    
+    <p style="margin-left:40px;">For&nbsp;example, if the customer has 100 GBP and 100 USD in their wallet, and they wish to spend 20 EUR, we will exchange enough USD&nbsp;into EUR so that they do have 20 EUR which can be debited.<br>
+    &nbsp;</p>
+    
+    <p style="margin-left:40px;">3. A customer may find they do not have enough balance in any one wallet to cover the entire transaction.&nbsp; In these cases, we debit funds from more than one wallet, taking funds from the wallets <strong>in the same currency order as mentioned above</strong>.&nbsp; For instance, if the transaction was for 50 EUR, and the customer had 20 EUR, 10 GBP, and 20 USD, we will debit the 20EUR from the EUR wallet, remaining 30 EUR will be the debited as&nbsp;20 USD from USD wallet (converted and worth 15 EUR) and 10 GBP from the GBP wallet (converted and worth 15 EUR).&nbsp; We use the mid market rate to convert these funds for our customers.</p>
+    
+    <p style="margin-left:40px;">&nbsp;</p>
+    
+    <p>In case the funds are insufficient and can not fulfill the withdrawal request by either partial or complete funding from single or multiple wallets, the request&nbsp;is denied and balances are not debited from user's account.&nbsp;</p>
+    
+    <p style="margin-left:40px;">&nbsp;</p>
+    
+    <p>Given that a customer&nbsp;has a multi-currency account with Wise, we would like you to write a solution that reads a series of deposit and withdrawal requests from user in the following format:&nbsp;</p>
+    
+    <pre><code>&lt;Request Action&gt;,&lt;Request Amount&gt;,&lt;Request Currency&gt;&nbsp;
+    
+    DEPOSIT,100.00,EUR
+    
+    WITHDRAW,100.00,EUR</code></pre>
+    
+    <p>and returns the&nbsp;balance resulting after the execution of all requests based on above logic&nbsp;in all currencies of the account in following format:</p>
+    
+    <pre><code>&lt;Balance Amount1&gt;&lt;space&gt;&lt;Balance Currency1&gt;&lt;,&gt;&lt;space&gt;&lt;Balance Amount2&gt;&lt;space&gt;&lt;Balance Currency2&gt;...
+    100.00 EUR, 20.00 GBP, 50.00 USD</code></pre>
+    
+    <p>&nbsp;</p>
+    
+    <p>To simplify this a bit, we have created a mock&nbsp;<strong>RateService</strong> for you to use to find the exchange rate to use to convert between currencies.&nbsp; We will only be using three currencies, EUR, GBP and USD.&nbsp; And in the event the customer does not have the appropriate funds in the right currency,&nbsp;we wish you to prioritise exchanging into those currencies in the order <strong>USD, EUR, GBP</strong>.</p>
+    
+    <p><br>
+    <style type="text/css">.ps-content-wrapper-v0 div { margin: 0 auto; overflow: auto; } .ps-content-wrapper-v0 div.preheader { display: none; } .ps-content-wrapper-v0 p { white-space: pre-wrap; padding-left: 4px; padding-right: 4px; padding-top: 0px; padding-bottom: 2px; } .ps-content-wrapper-v0 p.section-title { font-weight: bold; padding-bottom: 0px; } .ps-content-wrapper-v0 ol.plain-list, .ps-content-wrapper-v0 ul.plain-list { list-style-type: none; padding: 4px; } .ps-content-wrapper-v0 li { white-space: normal; margin-top: 4px; margin-bottom: 4px; } .ps-content-wrapper-v0 code { color: black; } .ps-content-wrapper-v0 pre { background-color: #f4faff; border: 0; border-radius: 2px; margin: 8px; padding: 10px; } .ps-content-wrapper-v0 pre.scrollable-full-json { overflow-x: scroll; white-space: pre; } .ps-content-wrapper-v0 pre.scrollable-json { height: 300px; overflow-y: scroll; display: inline-grid; white-space: pre-wrap; padding-left: 8px; padding-right: 8px; padding-top: 4px; padding-bottom: 4px; } .ps-content-wrapper-v0 div.equation-parent { width: 400px; text-align: center; border: 1px solid #000; padding: 8px; } .ps-content-wrapper-v0 div.equation-parent.equation { width: 100%; display: inline-block; } .ps-content-wrapper-v0 figure { background-color: transparent; display: table; margin-top: 8px; margin-bottom: 8px; text-align: center; margin-left: auto; margin-right: auto; } .ps-content-wrapper-v0 figcaption { text-align: center; display: table-caption; caption-side: bottom; margin-top: 4px; margin-bottom: 4px; } .ps-content-wrapper-v0 img { width: auto; max-width: 100%; height: auto; } .ps-content-wrapper-v0 details { background-color: transparent; padding-left: 4px; padding-right: 4px; padding-top: 0px; padding-bottom: 2px; } .ps-content-wrapper-v0 details details { padding-left: 8px; padding-right: 8px; } .ps-content-wrapper-v0 details summary { background-color: #39424e; color: white; font-weight: bold; margin-top: 4px; margin-bottom: 4px; padding: 8px; } .ps-content-wrapper-v0 details details summary code { color: black; font-weight: bold; padding-left: 2px; padding-right: 2px; padding-top: 4px; padding-right: 4px; margin-left: 4px; } .ps-content-wrapper-v0 details div.collapsable-details { margin: 0 auto; padding-left: 4px; padding-right: 4px; padding-top: 0px; padding-bottom: 2px; overflow: auto; } .ps-content-wrapper-v0 details div.collapsable-details pre { margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px; } .ps-content-wrapper-v0 table.normal { border: 1px solid black; border-collapse: collapse; border-color: darkgray; margin: 0 auto; margin-top: 8px; margin-bottom: 8px; padding: 8px; width: 96%; table-layout: fixed; } .ps-content-wrapper-v0 table.normal tbody { display: block; overflow-x: auto; overflow-y: hidden; } .ps-content-wrapper-v0 table.normal tbody tr:first-child th { font-weight: bold; white-space: normal; } .ps-content-wrapper-v0 table.normal tbody tr th, .ps-content-wrapper-v0 table.normal tbody tr td { font-weight: normal; white-space: nowrap; text-align: center; vertical-align: middle; border: 1px solid black; border-color: darkgray; padding: 8px; } .ps-content-wrapper-v0 table.database-table { border-collapse: collapse; border-color: darkgray; border: 1px solid black; width: auto; margin-left: 4px; margin-top: 8px; margin-bottom: 8px; padding: 8px; } .ps-content-wrapper-v0 table.database-table tbody { overflow-x: auto; overflow-y: hidden; border: none; } .ps-content-wrapper-v0 table.database-table tbody tr th, .ps-content-wrapper-v0 table.database-table tbody tr td { font-weight: normal; white-space: nowrap; text-align: center; vertical-align: middle; border: 1px solid black; border-color: darkgray; padding: 8px; } .ps-content-wrapper-v0 table.database-table tbody tr th { font-weight: bold; border: 1px solid black; } .ps-content-wrapper-v0 table.database-table tbody tr:nth-child(2) td { border: 1px solid black; } .ps-content-wrapper-v0 table.database-table tbody tr:nth-child(n+2) td:first-child { border-left-color: black; } .ps-content-wrapper-v0 table.database-table tbody tr:nth-child(n+2) td:last-child { border-right-color: black; } .ps-content-wrapper-v0 table.database-table tbody tr:last-child td { border-bottom-color: black; } .ps-content-wrapper-v0 table.database-table tbody tr td.description { text-align: left; white-space: pre-wrap; } .ps-content-wrapper-v0 table.normal tbody tr th.description { width: 60%; } .ps-content-wrapper-v0 table.function-params tbody tr:first-child td.headers { border-bottom-width: 2px; } .ps-content-wrapper-v0 table.function-params tbody tr:last-child td { border-top-width: 2px; border-top-color: darkgray; } .ps-content-wrapper-v0 table.function-params tbody tr td.headers { width: 25%; font-weight: bold; text-align: center; border: 1px solid black; border-right-width: 2px; border-color: darkgray; } .ps-content-wrapper-v0 table.function-params tbody tr td.params-table-cell { width: 100%; height: 100%; padding: 0px; } .ps-content-wrapper-v0 table.function-params tbody tr td.params-table-cell table.params-table { width: 100%; height: 100%; padding: 0px; margin: 0px; border: 0; } .ps-content-wrapper-v0 table.function-params tbody tr td.params-table-cell table.params-table tbody tr td.code { white-space: normal; } .ps-content-wrapper-v0 table.function-params tbody tr td.params-table-cell table.params-table tbody tr th { border-top: 0; } .ps-content-wrapper-v0 table.function-params tbody tr td.params-table-cell table.params-table tbody tr th:first-child { border-left: 0; } .ps-content-wrapper-v0 table.function-params tbody tr td.params-table-cell table.params-table tbody tr th:last-child { border-right: 0; } .ps-content-wrapper-v0 table.function-params tbody tr td.params-table-cell table.params-table tbody tr:last-child td { border-bottom: 0; border-top-width: 1px; } .ps-content-wrapper-v0 table.function-params tbody tr td.params-table-cell table.params-table tbody tr td:first-child { border-left: 0; } .ps-content-wrapper-v0 table.function-params tbody tr td.params-table-cell table.params-table tbody tr td:last-child { border-right: 0; } .ps-content-wrapper-v0 table.sudoku { border-collapse: collapse; border-color: darkgray; margin: 0 auto; margin-top: 8px; margin-bottom: 8px; padding: 8px; } .ps-content-wrapper-v0 table.sudoku colgroup, tbody { border: 3px solid black; } .ps-content-wrapper-v0 table.sudoku td { border: 1px solid black; height: 25px; width: 25px; text-align: center; padding: 0; } .ps-content-wrapper-v0 .left { text-align: left; } .ps-content-wrapper-v0 .right { text-align: right; } .ps-content-wrapper-v0 .code { font-family: monospace; white-space: nowrap; } .ps-content-wrapper-v0 .json-object-array ol, .ps-content-wrapper-v0 .json-object-array ol ul { margin-top: 0px; padding-left: 14px; } .json-object-array li { float: left; margin-right: 30px; margin-left: 10px; } .json-object-array pre { padding: 4px; margin-left: 0px; }
+    </style>
+    </p>
+    
+    <p>The output string should</p>
+    
+    <p style="margin-left:40px;"><strong>1. contain only <code>non zero balances</code>.</strong></p>
+    
+    <p style="margin-left:40px;"><strong>2. order&nbsp;balances&nbsp;in the <code>alphabetical order of their currencies</code> .</strong></p>
+    
+    <p style="margin-left:40px;"><strong>3. contain balances <code>rounded to two decimal places</code>.</strong></p>
+    
+    <p style="margin-left:40px;"><strong>4. <code>balances with more than two decimal points should be rounded based on ROUND UP logic</code>.&nbsp; (</strong>Always increments the digit prior to a non-zero discarded fraction, <strong>e.g. 12.221 = 12.23, 2.116&nbsp;= 2.12</strong>)</p>
+    
+    <p style="margin-left:40px;">&nbsp;</p>
+    
+    <p>&nbsp;</p>
+    
+    <div class="ps-content-wrapper-v0">
+    <p class="section-title">Function Description</p>
+    
+    <p>Complete the function <strong><em>printBalance</em></strong> in the editor below. The function must return a string containing the final balance of users multi currency account.</p>
+    
+    <p><strong><em>printBalance</em></strong> has the following parameter(s):</p>
+    
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;<em>requests:</em>&nbsp; a list of <strong>deposit</strong> or <strong>withdrawal</strong> requests as a string</p>
+    
+    <p>&nbsp;</p>
+    
+    <p>To get mid market daily rates between currencies, a helper function <em><strong>getMidMarketRate</strong> </em>has been provided that provides rates between two currencies.</p>
+    
+    <p><em><strong>getMidMarketRate</strong> </em>has the following parameters:</p>
+    
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;fromCurrency: currency which is being converted as a string</p>
+    
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;toCurrency: currency into which conversion is being done as a string</p>
+    
+    <p>&nbsp;</p>
+    
+    <p><em>getMidMarketRate will return 1.0 </em>as rate if fromCurrency is same as toCurrency.</p>
+    
+    <p><em>getMidMarketRate </em>will throw an exception if rate is requested for any currencies other than supported currencies mentioned in constraints below.</p>
+    
+    <p class="section-title">&nbsp;</p>
+    
+    <p class="section-title">Constraints</p>
+    
+    <ul>
+        <li>
+    <strong>&lt;Request Action&gt;</strong> in each request will either be <strong>DEPOSIT</strong> or <strong>WITHDRAWAL</strong>
+    </li>
+        <li>
+    <strong>&lt;Request Currency&gt; </strong>will only be one of the following : <strong>[EUR, GBP, USD]</strong>
+    </li>
+        <li>
+    <strong>&lt;Request Amount&gt;</strong> will be in following range : 0.00 &lt;= request amount &lt;=10000.00</li>
+        <li>Number of requests per test case: 0&lt;= requests &lt;1000000</li>
+    </ul>
+    
+    <p>&nbsp;</p>
+    <!-- <StartOfInputFormat> DO NOT REMOVE THIS LINE-->
+    
+    <details><summary class="section-title">Input Format</summary>
+    
+    <div class="collapsable-details">
+    <p>Each String in the request contains three fields, <i><strong>&lt;Request Action, Request Amount, Request Currency&gt;</strong> with above mentioned constraints</i><br>
+    &nbsp;</p>
+    </div>
+    </details>
+    <!-- </StartOfInputFormat> DO NOT REMOVE THIS LINE-->
+    
+    <details><summary class="section-title">Sample Case 0</summary>
+    
+    <div class="collapsable-details">
+    <p class="section-title">Sample Input</p>
+    
+    <pre>DEPOSIT,100.00,EUR
+    WITHDRAW,80.00,GBP
+    </pre>
+    
+    <p>&nbsp;</p>
+    
+    <p class="section-title">Sample Output</p>
+    
+    <pre>4.00 EUR
+    &nbsp;</pre>
+    
+    <p class="section-title">Explanation</p>
+    
+    <div style="background:#eeeeee;border:1px solid #cccccc;padding:5px 10px;">
+    <strong>Request 1 :</strong> Customer&nbsp;<strong>deposits 100.00 EUR</strong> to the multi-currency account. <code>Account balance : 100.00 EUR</code>
+    </div>
+    
+    <p>&nbsp;</p>
+    
+    <div style="background:#eeeeee;border:1px solid #cccccc;padding:5px 10px;">
+    <strong>Request 2 :</strong> Customer requests <strong>withdrawal of 80.00 GBP</strong>. Note that user&nbsp;has no GBP balance at this moment, but does have 100.00 EUR to fund this withdrawal.&nbsp; TransferWise decides to <strong>convert</strong> <strong>X EUR that would be&nbsp;equal the withdrawal amount </strong>(80.00 GBP)&nbsp;<strong>based on mid market rate between these currencies</strong>.<br>
+    Assuming following mid market rates :
+    <ul>
+        <li>
+        <div style="background:#eeeeee;border:1px solid #cccccc;padding:5px 10px;">GBP to EUR : <strong>1.20</strong>
+    </div>
+        </li>
+    </ul>
+    We would then debit the following amounts:&nbsp;<br>
+    <strong><kbd>80 GBP * 1.20 = 96.00 EUR</kbd></strong><br>
+    TransferWise accepts the withdrawal request since<strong> EUR balance is sufficient to fund this withdrawal </strong>and&nbsp;user receives 80.00 GBP. Final balance of user's multi currency account would be&nbsp;&nbsp;<code>4.00 EUR</code>
+    </div>
+    
+    <p>&nbsp;</p>
+    </div>
+    </details>
+    
+    <details><summary class="section-title">Sample Case 1</summary>
+    
+    <div class="collapsable-details">
+    <p class="section-title">Sample Input</p>
+    
+    <pre>DEPOSIT,100.00,EUR
+    DEPOSIT,100.00,GBP
+    WITHDRAW,50.00,USD
+    </pre>
+    
+    <p>&nbsp;</p>
+    
+    <p class="section-title">Sample Output</p>
+    
+    <pre>54.55 EUR, 100.00 GBP</pre>
+    
+    <p class="section-title">Explanation</p>
+    
+    <div style="background:#eeeeee;border:1px solid #cccccc;padding:5px 10px;">
+    <strong>Request 1&nbsp;:</strong> Customer deposits 100.00 EUR to the multi-currency account. <code>Account balance : 100.00 EUR</code>
+    </div>
+    
+    <p>&nbsp;</p>
+    
+    <div style="background:#eeeeee;border:1px solid #cccccc;padding:5px 10px;">
+    <strong>Request 2&nbsp;: </strong>Customer deposits 100.00 GBP to the multi-currency account. <code>Account balance : 100.00 EUR, 100.00 GBP</code>
+    </div>
+    
+    <p>&nbsp;</p>
+    
+    <div style="background:#eeeeee;border:1px solid #cccccc;padding:5px 10px;">
+    <strong>Request 3 : </strong>Customer requests withdrawal of <strong>50.00 USD</strong>. Note that user again&nbsp;has <strong>no USD</strong> balance at this moment, but does have <strong>100.00 EUR and 100.00 GBP</strong> to fund this withdrawal.&nbsp;TransferWise decides to <strong>convert</strong> <strong>X EUR first based on the currency order</strong>.&nbsp;<br>
+    Assuming following mid market rates :
+    <ul>
+        <li>
+        <div style="background:#eeeeee;border:1px solid #cccccc;padding:5px 10px;">USD to EUR : <strong>0.9090</strong>
+    </div>
+        </li>
+        <li>
+        <div style="background:#eeeeee;border:1px solid #cccccc;padding:5px 10px;">EUR to USD : <strong>0.7692</strong>
+    </div>
+        </li>
+    </ul>
+    
+    <p>We would then debit the following amounts:&nbsp;<br>
+    <strong>50.00 USD * 0.9090 =&gt; 45.45 EUR</strong></p>
+    
+    <p>Since user's EUR wallet has sufficient balance to fund this withdrawal, the final balance of user's multi currency account would be <code>54.55 EUR, 100.00 GBP</code></p>
+    </div>
+    </div>
+    </details>
+    
+    <p>&nbsp;</p>
+    
+    <details><summary class="section-title">Sample Case 2</summary>
+    
+    <div class="collapsable-details">
+    <p class="section-title">Sample Input</p>
+    
+    <pre>DEPOSIT,100.00,EUR
+    DEPOSIT,100.00,GBP
+    DEPOSIT,100.00,USD
+    WITHDRAW,300.00,USD
+    </pre>
+    
+    <p>&nbsp;</p>
+    
+    <p class="section-title">Sample Output</p>
+    
+    <pre><strong>30.78 GBP</strong></pre>
+    
+    <p class="section-title">Explanation</p>
+    
+    <div style="background:#eeeeee;border:1px solid #cccccc;padding:5px 10px;">
+    <strong>Request 1&nbsp;:</strong> Customer deposits 100.00 EUR to the multi-currency account. <code>Account balance : 100.00 EUR</code>
+    </div>
+    
+    <p>&nbsp;</p>
+    
+    <div style="background:#eeeeee;border:1px solid #cccccc;padding:5px 10px;">
+    <strong>Request 2&nbsp;: </strong>Customer deposits 100.00 GBP to the multi-currency account. <code>Account balance : 100.00 EUR, 100.00 GBP</code>
+    </div>
+    
+    <p>&nbsp;</p>
+    
+    <div style="background:#eeeeee;border:1px solid #cccccc;padding:5px 10px;">
+    <strong>Request 3&nbsp;: </strong>Customer deposits 100.00 USD to the multi-currency account. <code>Account balance : 100.00 EUR, 100.00 GBP, 100.00 USD</code>
+    </div>
+    
+    <p>&nbsp;</p>
+    
+    <div style="background:#eeeeee;border:1px solid #cccccc;padding:5px 10px;">
+    <p><strong>Request 4 : </strong>Customer requests withdrawal of <strong>300.00 USD</strong>. Note that user has <strong>100 USD</strong> balance in USD wallet, alongwith <strong>100.00 EUR and 100.00 GBP</strong> to fund this withdrawal.&nbsp;</p>
+    
+    <p>TransferWise decides to debit <strong>100.00 USD</strong> from USD wallet and <strong>convert</strong> <strong>X EUR first based on the predefined currency order,&nbsp;</strong>and <strong>remaining Y GBP from GBP wallet</strong>.</p>
+    
+    <p>Assuming following mid market rates :</p>
+    
+    <ul>
+        <li>
+        <div style="background:#eeeeee;border:1px solid #cccccc;padding:5px 10px;">USD to EUR : <strong>0.7692</strong>
+    </div>
+        </li>
+        <li>
+        <div style="background:#eeeeee;border:1px solid #cccccc;padding:5px 10px;">EUR to USD : <strong>0.7692</strong>
+    </div>
+        </li>
+        <li>
+        <div style="background:#eeeeee;border:1px solid #cccccc;padding:5px 10px;">USD to GBP : <strong>0.7692</strong>
+    </div>
+        </li>
+    </ul>
+    
+    <p>&nbsp;</p>
+    
+    <p>We would then debit the following amounts:&nbsp;<br>
+    <strong>100.00 USD</strong>&nbsp;(remaining withdrawal amount 200 USD)</p>
+    
+    <p><strong>200.00 USD * 0.9090 = 181.80 EUR</strong> (EUR wallet doesn't have this much balance hence we would have to fund this transaction partially with GBP wallet as well)</p>
+    
+    <p><strong>100.00 EUR * 1.10 = 110.00 USD</strong> (remaining withdrawal amount 90 USD)</p>
+    
+    <p><strong>90.00 USD * 0.7692 = 69.228 GBP </strong><span style="font-size: 16px;">(remaining withdrawal amount 0 USD)</span></p>
+    
+    <p>Since user's wallets has sufficient balance to fund this withdrawal, the final balance of user's multi currency account would be <code>100.00 - 69.228 = 30.772 GBP<br>
+    <br>
+    Please note that <strong>rounding mode</strong> would be <strong>Round UP</strong> for the final balance <strong>30.772</strong> would be <strong>30.78</strong> GBP</code></p>
+    </div>
+    </div>
+    </details>
+    </div>
+    </div></div>

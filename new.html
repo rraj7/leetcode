@@ -1,0 +1,93 @@
+<div class="candidate-rich-text"><div id="33gpn7snapp-instruction"><p>At TransferWise, when we open up a new currency for our customers to send money to, we integrate with the local network in that country.&nbsp; This will often require us to collect different information from customers.&nbsp; For instance, in the UK, we need to ask for an account number and a sort code.&nbsp; And in Australia, we need to ask for an account number and a bsb code.&nbsp; When we do allow customers to add these new bank details, we need to make sure that they're&nbsp;giving us bank account information that is correct and we can pay out to, so we will write some code to validate those details.</p>
+
+    <p>&nbsp;</p>
+    
+    <p>One way we do this is by checking the "checksum" that is often built into banking details.&nbsp; By applying an algorithm to the bank details a customer gives us, we can come up with an answer as to whether it's a valid bank account or not.</p>
+    
+    <p>&nbsp;</p>
+    
+    <p>We'd like you to help us build our validation for a new currency we're introducing - the TransferWise Dollar (TWD), from the country of TransferWiseVania.&nbsp; A TransferWise Dollar <strong>bank code</strong> is made up of <strong>two characters</strong> (A-Z) followed by two digits,&nbsp;such as <strong>AB11</strong>.&nbsp; A TransferWise Dollar <strong>account number</strong> is comprised of 2 digits, which are the checksum, followed by a hyphen, and then a further 7 digits that indicate which account the money is going to.&nbsp; E.g. <strong>18-7654321</strong>.&nbsp; <strong>The first two digits of the account number (in this example, 18), are the checksum</strong>.&nbsp; &nbsp;</p>
+    
+    <p>&nbsp;</p>
+    
+    <p>The way to calculate the checksum is as follows:</p>
+    
+    <p>&nbsp;</p>
+    
+    <p>1. First, concatenate the account number (<strong>18-7654321)</strong> and bank code (<strong>AB11)</strong> in that order (account number first, then bank code). Result will be :&nbsp;<strong>18-7654321AB11</strong></p>
+    
+    <p>2. The checksum and the dash are removed from the calculation.&nbsp;&nbsp;<strong>7654321AB11</strong></p>
+    
+    <p>3. A weighting is then applied to all of the numbers and characters one by one, and a sum is then calculated.&nbsp; The weightings are&nbsp;as follows:</p>
+    
+    <table border="1" cellpadding="1" cellspacing="1" style="width:200px;">
+        <tbody>
+            <tr>
+                <td>Index</td>
+                <td>Weight</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>7</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>5</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p>&nbsp;</p>
+    
+    <p>When applying these weights, all characters ([A-Z]) should be replaced with the index of that character in the alphabet starting from 0, with a further 10 added.&nbsp; <strong>A = 10, B = 11, C = 12,&nbsp;etc.</strong></p>
+    
+    <p>&nbsp;</p>
+    
+    <p>For our example, we would end up with this: (<strong>7 * 7) + (3 * 6) + (1 * 5) + (5 * 4) + (2 * 3) + (4 * 2) + (8 * 1) + (6 * 10) + (1&nbsp;* 11) + (6 * 1) + (5 * 1) = 196</strong></p>
+    
+    <p>If this is an <strong>even number</strong>, we need to find the remainder from dividing by 89:&nbsp;<strong>196&nbsp;% 89 = 18</strong></p>
+    
+    <p>If this is an <strong>odd number</strong>, we need to find the remainder&nbsp;from dividing by 89, and then subtract remainder from 89.<strong>&nbsp; E.g. 89 - (105&nbsp;% 89) = 72</strong></p>
+    
+    <p>&nbsp;</p>
+    
+    <p>We would like you to <strong>write the method that calculates what the checksum should be</strong>.&nbsp; We have supplied you a method that will pass in an account number as a string, and a bank code as a string.&nbsp;We would like you to first validate if the account number and bank code are in a valid format (i.e. they comprise of the right number of digits and characters in the right place).&nbsp; If they are, calculate the checksum, and return that as a <strong>two digit string</strong>.&nbsp; If the <strong>account number or bank code&nbsp;is not in a valid format, then return an empty string.</strong>&nbsp; Don't forget to allow for spaces between digits.&nbsp; And on occasion, we have customers that will leave out a leading zero from the account number (such as&nbsp; 1-1234567 rather than 01-1234567).&nbsp; These are both valid cases.</p>
+    
+    <p>&nbsp;</p>
+    </div></div>
